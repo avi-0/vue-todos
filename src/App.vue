@@ -11,7 +11,7 @@ provide('tasksstore', store)
 
 <template>
   <div class="flex h-screen flex-col items-center overflow-auto bg-lime-50 selection:bg-lime-300">
-    <div class="flex w-full max-w-screen-md flex-col items-stretch gap-2 py-2">
+    <div class="flex w-full max-w-screen-md flex-col items-stretch gap-2 p-2">
       <TasksView v-if="conn.user.value" :conn />
       <button
         v-else
