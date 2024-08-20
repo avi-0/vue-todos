@@ -111,9 +111,9 @@ const completed = computed(() => taskCompleted(props.task, now.value))
           <InputField
             :disabled="!props.task.repeatEnabled"
             type="number"
-            class="w-12 text-right outline-inherit shadow-inner"
+            class="w-12 text-right outline-inherit"
             :modelValue="Math.round(cooldown / 86400)"
-            @input="onCooldownChanged"
+            @change="onCooldownChanged"
           />
           days
         </div>

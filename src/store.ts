@@ -69,21 +69,21 @@ export function createTasksStore(conn: PBConnection): TasksStore {
     update(records)
   }
 
-  conn.pb.collection('tasks').subscribe('*', (e) => {
-    const record = e.record as unknown as TaskRecord
-    const task = taskFromRecord(record)
+  // conn.pb.collection('tasks').subscribe('*', (e) => {
+  //   const record = e.record as unknown as TaskRecord
+  //   const task = taskFromRecord(record)
 
-    const existingTaskI = tasks.value.findIndex((t) => t.id == task.id)
-    if (existingTaskI >= 0) {
-      if (e.action == 'delete') {
-        tasks.value.splice(existingTaskI, 1)
-      } else {
-        tasks.value[existingTaskI] = task
-      }
-    } else {
-      tasks.value.push(task)
-    }
-  })
+  //   const existingTaskI = tasks.value.findIndex((t) => t.id == task.id)
+  //   if (existingTaskI >= 0) {
+  //     if (e.action == 'delete') {
+  //       tasks.value.splice(existingTaskI, 1)
+  //     } else {
+  //       tasks.value[existingTaskI] = task
+  //     }
+  //   } else {
+  //     tasks.value.push(task)
+  //   }
+  // })
 
   watch(
     conn.user,
@@ -112,6 +112,14 @@ export function createTasksStore(conn: PBConnection): TasksStore {
       fetchAll()
     },
     update: async (task: Task) => {
+      // update locally immediately
+      tasks.value = tasks.value.map((task_) => {
+        if (task_.id == task.id) {
+          return task
+        }
+        return task_
+      })
+
       await conn.pb.collection('tasks').update(task.id, recordFromTask(task))
       fetchAll()
     },
