@@ -3,6 +3,7 @@ import { type TasksStore, type Task, taskCompleted, taskCooldown } from '@/tasks
 import { useFocusWithin, useNow, useTimeAgo } from '@vueuse/core'
 import { computed, ref, watch } from 'vue'
 import { inject } from 'vue'
+import InputField from './InputField.vue'
 
 const props = defineProps<{
   task: Task
@@ -82,8 +83,8 @@ const completed = computed(() => taskCompleted(props.task, now.value))
         @click="toggle"
         @mousedown.prevent
       ></i>
-      <input
-        class="flex-1 rounded-md bg-inherit p-1 outline outline-1 outline-inherit transition-all focus:outline-lime-400"
+      <InputField
+        class="flex-1"
         :class="{ 'line-through': completed }"
         v-model="description"
         @change="onDescriptionChanged"
@@ -105,13 +106,13 @@ const completed = computed(() => taskCompleted(props.task, now.value))
           }"
           @click="toggleRepeatable"
         ></i>
-        <div v-if="props.task.repeatEnabled" class="flex gap-2 outline-inherit">
+        <div v-if="props.task.repeatEnabled" class="flex items-baseline gap-2 outline-inherit">
           Repeats after
-          <input
+          <InputField
             :disabled="!props.task.repeatEnabled"
             type="number"
-            class="w-12 rounded-md border-inherit bg-inherit px-1 text-right outline outline-1 outline-inherit transition-all focus:outline-lime-400"
-            :value="Math.round(cooldown / 86400)"
+            class="w-12 text-right"
+            :modelValue="Math.round(cooldown / 86400)"
             @input="onCooldownChanged"
           />
           days
