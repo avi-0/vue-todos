@@ -14,5 +14,13 @@ const submit = () => {
 </script>
 
 <template>
-  <InputField class="bg-white p-2 outline-gray-200" v-model="description" @keyup.enter="submit" />
+  <div class="flex items-center justify-stretch gap-2">
+    <i class="bi icon bi-plus-lg pl-2 transition-all hover:text-lime-600" @click="submit" />
+    <InputField
+      class="flex-1 bg-white p-2 outline-gray-200"
+      v-model="description"
+      @keyup.enter="submit"
+      placeholder="Add task..."
+    ></InputField>
+  </div>
 </template>
