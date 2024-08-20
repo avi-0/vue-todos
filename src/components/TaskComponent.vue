@@ -69,7 +69,7 @@ const completed = computed(() => taskCompleted(props.task, now.value))
 <template>
   <div
     ref="el"
-    class="flex select-none flex-col gap-2 rounded-md border p-2 shadow-sm transition-all has-[:focus]:shadow-md"
+    class="flex select-none flex-col gap-3 rounded-md border p-2 shadow-sm transition-all hover:shadow-md"
     tabindex="0"
     :class="{
       'border-lime-300 bg-lime-100 outline-lime-300': completed,
@@ -84,7 +84,7 @@ const completed = computed(() => taskCompleted(props.task, now.value))
         @mousedown.prevent
       ></i>
       <InputField
-        class="flex-1"
+        class="flex-1 outline-inherit"
         :class="{ 'line-through': completed }"
         v-model="description"
         @change="onDescriptionChanged"
@@ -111,18 +111,15 @@ const completed = computed(() => taskCompleted(props.task, now.value))
           <InputField
             :disabled="!props.task.repeatEnabled"
             type="number"
-            class="w-12 text-right"
+            class="w-12 text-right outline-inherit shadow-inner"
             :modelValue="Math.round(cooldown / 86400)"
             @input="onCooldownChanged"
           />
           days
         </div>
         <div v-else class="text-gray-400">Does not repeat</div>
-      </div>
-
-      <div class="flex items-center gap-2">
+        <div class="flex-1"></div>
         <i class="bi bi-trash icon transition-all hover:text-red-600" @click="delete_"> </i>
-        Delete
       </div>
     </template>
   </div>

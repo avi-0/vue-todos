@@ -24,9 +24,9 @@ const store = inject<TasksStore>('tasksstore')!
     </button>
   </div>
 
+  <AddTask />
+
   <TransitionGroup>
     <TaskComponent v-for="task in store.tasks.value" :key="task.id" :task="task" />
   </TransitionGroup>
-
-  <AddTask />
 </template>
