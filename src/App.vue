@@ -11,15 +11,18 @@ provide('tasksstore', store)
 
 <template>
   <div class="flex h-screen flex-col items-center overflow-auto bg-lime-50 selection:bg-lime-300">
-    <div class="flex w-full max-w-screen-md flex-col items-stretch gap-2 p-2">
+    <div class="flex h-full w-full max-w-screen-md flex-col items-stretch gap-2 p-2">
       <TasksView v-if="conn.user.value" :conn />
-      <button
-        v-else
-        @click="conn.signInWithGoogle"
-        class="self-center rounded-md bg-lime-500 p-2 font-semibold text-white hover:bg-lime-600"
-      >
-        sign in with Google
-      </button>
+
+      <div v-else class="flex flex-1 flex-col items-center justify-center gap-2">
+        <h1 class="text-xl">Cool Todos App :3</h1>
+        <button
+          @click="conn.signInWithGoogle"
+          class="self-center rounded-md bg-lime-500 p-2 font-semibold text-white hover:bg-lime-600"
+        >
+          sign in with Google
+        </button>
+      </div>
     </div>
   </div>
 </template>
