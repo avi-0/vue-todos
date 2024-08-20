@@ -85,9 +85,13 @@ export function createTasksStore(conn: PBConnection): TasksStore {
     }
   })
 
-  watch(conn.user, () => {
-    fetchAll()
-  })
+  watch(
+    conn.user,
+    () => {
+      fetchAll()
+    },
+    { immediate: true }
+  )
 
   const now = useNow()
 
