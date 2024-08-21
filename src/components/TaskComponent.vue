@@ -91,7 +91,9 @@ const completed = computed(() => taskCompleted(props.task, now.value))
       />
       <i class="bi icon bi-hourglass-bottom" v-if="props.task.repeatEnabled && !completed"></i>
       <template v-if="props.task.repeatEnabled && completed">
-        {{ repeatsIn }}
+        <div class="text-sm">
+          {{ repeatsIn }}
+        </div>
         <i class="bi icon bi-hourglass-split"></i>
       </template>
     </div>
