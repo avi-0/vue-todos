@@ -1,13 +1,6 @@
 import { computed, onScopeDispose, ref, watch, type Ref } from 'vue'
 import Pocketbase, { type AuthModel } from 'pocketbase'
-import {
-  taskBeenPending,
-  taskCompleted,
-  taskCooldown,
-  taskRepeatsIn,
-  type Task,
-  type TasksStore
-} from './tasks'
+import { taskBeenPending, taskCompleted, taskRepeatsIn, type Task, type TasksStore } from './tasks'
 import {
   compareBooleans,
   compareBy,
