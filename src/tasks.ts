@@ -39,3 +39,9 @@ export function taskBeenPending(task: Task, now: Date): number | undefined {
     }
   }
 }
+
+export function taskRepeatsIn(task: Task, now: Date): number | undefined {
+  if (task.repeatEnabled && taskCompleted(task, now)) {
+    return task.lastCompleted.getTime() + taskCooldown(task) * 1000 - now.getTime()
+  }
+}
