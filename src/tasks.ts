@@ -7,6 +7,7 @@ export type Task = {
   repeatEnabled: boolean
   cooldownSeconds: number
   lastCompleted: Date
+  created: Date
 }
 
 export type TasksStore = {
@@ -28,5 +29,13 @@ export function taskCompleted(task: Task, now: Date) {
     return now.getTime() < task.lastCompleted.getTime() + taskCooldown(task) * 1000
   } else {
     return task.completed
+  }
+}
+
+export function taskBeenPending(task: Task, now: Date): number | undefined {
+  if (task.repeatEnabled) {
+    if (!taskCompleted(task, now)) {
+      return now.getTime() - task.lastCompleted.getTime() + taskCooldown(task) * 1000
+    }
   }
 }

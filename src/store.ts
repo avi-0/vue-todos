@@ -1,7 +1,15 @@
 import { computed, onScopeDispose, ref, watch, type Ref } from 'vue'
 import Pocketbase, { type AuthModel } from 'pocketbase'
-import { taskCompleted, type Task, type TasksStore } from './tasks'
-import { compareBooleans, compareBy, compareOrdered, compareStrings } from './sort'
+import { taskBeenPending, taskCompleted, taskCooldown, type Task, type TasksStore } from './tasks'
+import {
+  compareBooleans,
+  compareBy,
+  compareIfDefined,
+  compareNumbers,
+  compareOrdered,
+  compareStrings,
+  invert
+} from './sort'
 import { useNow } from '@vueuse/core'
 
 type TaskRecord = {
@@ -11,16 +19,19 @@ type TaskRecord = {
   repeatEnabled: boolean
   cooldownSeconds: number
   lastCompleted: string
+  created: string
 }
 
 const taskFromRecord = (record: TaskRecord): Task => ({
   ...record,
-  lastCompleted: new Date(record.lastCompleted || 0)
+  lastCompleted: new Date(record.lastCompleted || 0),
+  created: new Date(record.created)
 })
 
 const recordFromTask = (task: Task): TaskRecord => ({
   ...task,
-  lastCompleted: task.lastCompleted.toISOString()
+  lastCompleted: task.lastCompleted.toISOString(),
+  created: task.created.toISOString()
 })
 
 export type PBConnection = {
@@ -99,7 +110,19 @@ export function createTasksStore(conn: PBConnection): TasksStore {
     return tasks.value.toSorted(
       compareOrdered([
         compareBy((task) => taskCompleted(task, now.value), compareBooleans),
-        compareBy((task) => task.description, compareStrings),
+        compareBy(
+          (task) => taskBeenPending(task, now.value),
+          compareIfDefined(compareNumbers, { undefinedIsLarger: true })
+        ),
+        compareBy(
+          (task) => {
+            if (task.repeatEnabled && taskCompleted(task, now.value)) {
+              return taskCooldown(task)
+            }
+          },
+          compareIfDefined(compareNumbers, { undefinedIsLarger: true })
+        ),
+        compareBy((task) => task.created.toISOString(), invert(compareStrings)),
         compareBy((task) => task.id, compareStrings)
       ])
     )
