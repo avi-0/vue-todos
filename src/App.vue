@@ -15,7 +15,11 @@ provide('tasksstore', store)
       <TasksView v-if="conn.user.value" :conn />
 
       <div v-else class="flex flex-1 flex-col items-center justify-center gap-2">
-        <h1 class="text-xl">Cool Todos App :3</h1>
+        <div class="flex items-center gap-2">
+          <h1 class="text-2xl">Cool Todos App</h1>
+          <img src="/kitty.png" class="relative top-0.5 h-8" />
+        </div>
+
         <button
           @click="conn.signInWithGoogle"
           class="self-center rounded-md bg-lime-500 p-2 font-semibold text-white hover:bg-lime-600"
