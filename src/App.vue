@@ -10,7 +10,7 @@ provide('tasksstore', store)
 </script>
 
 <template>
-  <div class="flex h-screen flex-col items-center overflow-auto bg-lime-50 selection:bg-lime-300">
+  <div class="flex h-dvh flex-col items-center overflow-auto bg-lime-50 selection:bg-lime-300">
     <div class="flex h-full w-full max-w-screen-md flex-col items-stretch gap-2 p-2">
       <TasksView v-if="conn.user.value" :conn />
 
