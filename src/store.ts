@@ -42,7 +42,7 @@ export type PBConnection = {
 }
 
 export function createPBConnection(): PBConnection {
-  const pb = new Pocketbase('https://cutekittens.mooo.com')
+  const pb = new Pocketbase('https://pb.cutekittenindustries.org')
   pb.autoCancellation(false)
 
   const user = ref(pb.authStore.model)
