@@ -124,9 +124,9 @@ const completed = computed(() => taskCompleted(props.task, now.value))
         <i class="bi bi-trash icon transition-all hover:text-red-600" @click="delete_"> </i>
       </div>
 
-      <div class="flex gap-2 outline-inherit">
+      <!-- <div class="flex gap-2 outline-inherit">
         <i class="bi icon bi-snow hover transition-all hover:text-sky-600"></i>
-      </div>
+      </div> -->
     </template>
   </div>
 </template>
