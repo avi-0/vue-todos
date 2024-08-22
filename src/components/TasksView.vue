@@ -15,7 +15,7 @@ const store = inject<TasksStore>('tasksstore')!
 <template>
   <div class="flex items-center gap-2">
     <h1 class="text-xl">Cool Todos App</h1>
-    <img src="/kitty.png" class="relative top-0.5 h-6" />
+    <img src="/kitty.svg" class="relative top-0.5 h-6" />
     <div class="flex-1"></div>
     <button
       class="rounded-md bg-lime-500 p-2 font-semibold text-white hover:bg-lime-600"
