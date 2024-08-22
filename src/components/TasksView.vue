@@ -17,6 +17,10 @@ const store = inject<TasksStore>('tasksstore')!
     <h1 class="text-xl">Cool Todos App</h1>
     <img src="/kitty.svg" class="relative top-0.5 h-6" />
     <div class="flex-1"></div>
+    <a href="https://github.com/avi-0/vue-todos"
+      ><i class="bi icon bi-github text-black/25 transition-all hover:text-lime-600"
+    /></a>
+
     <button
       class="rounded-md bg-lime-500 p-2 font-semibold text-white hover:bg-lime-600"
       @click="props.conn.logOut"
