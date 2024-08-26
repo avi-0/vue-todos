@@ -16,7 +16,7 @@ provide('tasksstore', store)
 
       <div v-else class="flex flex-1 flex-col items-center justify-center gap-2">
         <div class="flex items-center gap-2">
-          <h1 class="text-2xl">Cool Todos App</h1>
+          <h1 class="text-2xl">Cute Todos</h1>
           <img src="/kitty.svg" class="relative top-0.5 h-8" />
         </div>
 
