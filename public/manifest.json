@@ -1,0 +1,14 @@
+{
+  "theme_color": "#f7fee7",
+  "background_color": "#f7fee7",
+  "icons": [
+    { "purpose": "any", "sizes": "256x256 512x512", "src": "kitty.svg", "type": "image/svg+xml" }
+  ],
+  "orientation": "any",
+  "display": "standalone",
+  "dir": "auto",
+  "lang": "en-US",
+  "name": "Cute Todos",
+  "short_name": "todos",
+  "start_url": "https://todos.cutekittenindustries.org/"
+}
