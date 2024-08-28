@@ -14,7 +14,7 @@ const store = inject<TasksStore>('tasksstore')!
 
 <template>
   <div class="flex items-center gap-2">
-    <h1 class="text-xl">Cool Todos App</h1>
+    <h1 class="text-xl">Cute Todos</h1>
     <img src="/kitty.svg" class="relative top-0.5 h-6" />
     <div class="flex-1"></div>
     <a href="https://github.com/avi-0/vue-todos"
